@@ -8,13 +8,15 @@ using namespace std;
 int main() {
     int x = rand() % 100 + 1; //x is the random number between 1 and 100
     bool end;// variable to end the loop
-    int input, trys; //input is for saving the guess of the user. trys for counting the trys the user needed.
+    int input, trys = 0; //input is for saving the guess of the user. trys for counting the trys the user needed.
 
     cout << "The number is set, you can write your answer now." << endl;
     do{
         cin >> input;
         end = checkNumber(input, x);
+        trys++;
     } while (!end);
+    cout << "You needed " << trys << " trys to guess the right number." << endl;
     return 0;
 }
 
