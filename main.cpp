@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 
+
 using namespace std;
 
 bool checkNumber(int input, int x);
@@ -11,7 +12,7 @@ int checkUserInputInteger();
 bool playingAgain();
 char checkUserInputChar();
 string inputOfTheUsername();
-string readUsernameAndHighscore();
+void readUsernameAndHighscore();
 bool saveNewUsernameAndHighscore();
 
 
@@ -20,9 +21,9 @@ int main() {
     int x; //x is the random number between 1 and 100
     bool end = false;// variable to end the loop
     int input; //input is for saving the guess of the user. trys for counting the trys the user needed.
-    string name;
+    string username;
 
-    inputOfTheUsername();
+    username = inputOfTheUsername();
 
     do {
         x = rand() % 100 + 1;
@@ -36,7 +37,7 @@ int main() {
         if(end) {
             end = playingAgain();
         }
-
+        readUsernameAndHighscore();
     } while (end == false);
     return 0;
 }
@@ -158,4 +159,22 @@ string inputOfTheUsername(){
             }
         }
     }
+}
+
+void readUsernameAndHighscore() {
+    string bestUser[2];
+    ifstream myFile ("highscore.txt");
+    if(myFile.is_open()) {
+        for(int i = 0; i < 2; i ++){
+            getline(myFile, bestUser[i]);
+        }
+
+    } else {
+        cout << "Unable to open the highscore file." << endl;
+    }
+    cout << "The best user was " << bestUser[0] << ". He needed only " << bestUser[1] << " trys to guess the right answer." << endl;
+}
+
+bool saveNewUsernameAndHighscore() {
+
 }
