@@ -34,10 +34,11 @@ int main() {
             end = checkNumber(input, x);
         }
 
+        readUsernameAndHighscore();
+
         if(end) {
             end = playingAgain();
         }
-        readUsernameAndHighscore();
     } while (end == false);
     return 0;
 }
@@ -100,7 +101,7 @@ char checkUserInputChar(){
     char input;
     bool correctInput = false;
 
-    do {
+    while (!correctInput) {
         cin >> input;
         if(cin.fail() || cin.peek() != '\n') {
             cin.clear();
@@ -111,7 +112,7 @@ char checkUserInputChar(){
         } else {
             correctInput = true;
         }
-    } while (!correctInput);
+    }
     return input;
 }
 
@@ -145,11 +146,8 @@ string inputOfTheUsername(){
         cout << "Please insert your name." << endl;
         cin >> username;
         cout << "Your inserted username is: " << username << ". Do you want to play with it (Yes = y; No = n)" << endl;
-        decision = checkUserInputChar();
-
         while (true) {
             decision = checkUserInputChar();
-
             if (decision == 'y') {
                 return username;
             } else if (decision == 'n') {
