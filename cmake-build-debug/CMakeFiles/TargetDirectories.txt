@@ -1,0 +1,3 @@
+C:/Jamie Jentsch/BachelorOfScience - Informatik/4. Semester/C++ learning/Zahlenraten-Spiel/cmake-build-debug/CMakeFiles/Zahlenraten_Spiel.dir
+C:/Jamie Jentsch/BachelorOfScience - Informatik/4. Semester/C++ learning/Zahlenraten-Spiel/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Jamie Jentsch/BachelorOfScience - Informatik/4. Semester/C++ learning/Zahlenraten-Spiel/cmake-build-debug/CMakeFiles/rebuild_cache.dir
