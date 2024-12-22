@@ -1,21 +1,31 @@
 #include <iostream>
 #include <cstdlib>
 #include <limits>
+#include <string>
+#include <fstream>
+
+using namespace std;
 
 bool checkNumber(int input, int x);
 int checkUserInputInteger();
 bool playingAgain();
 char checkUserInputChar();
+string inputOfTheUsername();
+string readUsernameAndHighscore();
+bool saveNewUsernameAndHighscore();
 
-using namespace std;
+
 
 int main() {
-    int x;
+    int x; //x is the random number between 1 and 100
     bool end = false;// variable to end the loop
     int input; //input is for saving the guess of the user. trys for counting the trys the user needed.
+    string name;
+
+    inputOfTheUsername();
 
     do {
-        x = rand() % 100 + 1; //x is the random number between 1 and 100
+        x = rand() % 100 + 1;
         cout << "The number is set between 1 and 100, you can write your answer now." << endl;
 
         input = checkUserInputInteger();
@@ -122,6 +132,30 @@ bool playingAgain() {
             return true;
         } else {
             cout << "This letter was not accepted by the program. Please try again: " << endl;
+        }
+    }
+}
+
+string inputOfTheUsername(){
+    string username;
+    char decision;
+
+    while(true){
+        cout << "Please insert your name." << endl;
+        cin >> username;
+        cout << "Your inserted username is: " << username << ". Do you want to play with it (Yes = y; No = n)" << endl;
+        decision = checkUserInputChar();
+
+        while (true) {
+            decision = checkUserInputChar();
+
+            if (decision == 'y') {
+                return username;
+            } else if (decision == 'n') {
+                break;
+            } else {
+                cout << "This letter was not accepted by the program. Please try again: " << endl;
+            }
         }
     }
 }
