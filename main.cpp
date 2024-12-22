@@ -3,7 +3,7 @@
 #include <limits>
 #include <string>
 #include <fstream>
-
+#include <filesystem>
 
 using namespace std;
 
@@ -14,6 +14,7 @@ char checkUserInputChar();
 string inputOfTheUsername();
 void readUsernameAndHighscore();
 bool saveNewUsernameAndHighscore();
+bool isEmpty(ifstream& myFile);
 
 
 
@@ -22,6 +23,8 @@ int main() {
     bool end = false;// variable to end the loop
     int input; //input is for saving the guess of the user. trys for counting the trys the user needed.
     string username;
+
+    readUsernameAndHighscore();
 
     username = inputOfTheUsername();
 
@@ -161,18 +164,36 @@ string inputOfTheUsername(){
 
 void readUsernameAndHighscore() {
     string bestUser[2];
-    ifstream myFile ("highscore.txt");
+    ifstream myFile ("..\\highscore.txt");
+
+    if(isEmpty(myFile)){
+        cout << "Wow, you are the first one who is playing the game. There was no one before you who could be better!!" << endl;
+        return;
+    }
+
     if(myFile.is_open()) {
-        for(int i = 0; i < 2; i ++){
-            getline(myFile, bestUser[i]);
+        if(!getline(myFile, bestUser[0])) {
+            cout << "Error: Could not read the username out of the file." << endl;
+            return;
+        }
+        if(!getline(myFile, bestUser[1])) {
+            cout << "Error: Could not read the highscore out of the file." << endl;
+            return;
         }
 
+        cout << "The best user was " << bestUser[0]
+            << ". He needed only " << bestUser [1]
+            << " trys to guess the right number." << endl;
+        myFile.clear();
     } else {
         cout << "Unable to open the highscore file." << endl;
     }
-    cout << "The best user was " << bestUser[0] << ". He needed only " << bestUser[1] << " trys to guess the right answer." << endl;
 }
 
 bool saveNewUsernameAndHighscore() {
 
+}
+
+bool isEmpty(ifstream& myFile) {
+    return myFile.peek() == ifstream::traits_type::eof();
 }
