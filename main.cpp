@@ -13,8 +13,15 @@ int main() {
     cout << "The number is set, you can write your answer now." << endl;
     do{
         cin >> input;
-        end = checkNumber(input, x);
-        trys++;
+        if(cin.fail()){
+            cin.clear(); //reset the error
+            cin.ignore(256, '\n'); //empty insert puffer
+            cout << "Please insert only full numbers. Please try again." << endl;
+            end = false;
+        } else {
+            end = checkNumber(input, x);
+            trys++;
+        }
     } while (!end);
     cout << "You needed " << trys << " trys to guess the right number." << endl;
     return 0;
@@ -40,6 +47,5 @@ bool checkNumber(int input, int x) {
         return true;
     } else {
         cout << "An error has occurred, the program will shut down." << endl;
-        return true;
     }
 }
