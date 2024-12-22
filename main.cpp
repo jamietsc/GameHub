@@ -59,6 +59,11 @@ bool checkNumber(int input, int x) {
     }
 }
 
+/**
+ * function which checks if the user input is an integer or not
+ * if the input is not an int the user have to insert a value again
+ * @return the input if it is an integer
+ */
 int checkUserInputInteger(){
     int input;
     bool correctInput = false;
@@ -76,6 +81,10 @@ int checkUserInputInteger(){
     return input;
 }
 
+/**
+ * function to check if the user input is a single char
+ * @return the single char
+ */
 char checkUserInputChar(){
     char input;
     bool correctInput = false;
@@ -95,7 +104,10 @@ char checkUserInputChar(){
     return input;
 }
 
-
+/**
+ * function for the user to decide if he wants to play again or not
+ * @return false if he wants to play again; true if he wants to stop
+ */
 bool playingAgain() {
     char decision;
 
