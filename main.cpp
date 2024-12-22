@@ -24,8 +24,6 @@ int main() {
     int input; //input is for saving the guess of the user. trys for counting the trys the user needed.
     string username;
 
-    readUsernameAndHighscore();
-
     username = inputOfTheUsername();
 
     do {
@@ -141,6 +139,10 @@ bool playingAgain() {
     }
 }
 
+/**
+ * function to insert the username and accept it
+ * @return the username to the function call
+ */
 string inputOfTheUsername(){
     string username;
     char decision;
@@ -162,6 +164,9 @@ string inputOfTheUsername(){
     }
 }
 
+/**
+ * function to read the username and his highscore from the highscore.txt file
+ */
 void readUsernameAndHighscore() {
     string bestUser[2];
     ifstream myFile ("..\\highscore.txt");
@@ -194,6 +199,11 @@ bool saveNewUsernameAndHighscore() {
 
 }
 
+/**
+ * Function to check if an excisting file is empty
+ * @param myFile the path of the file
+ * @return true if its empty || false if its not empty
+ */
 bool isEmpty(ifstream& myFile) {
     return myFile.peek() == ifstream::traits_type::eof();
 }
