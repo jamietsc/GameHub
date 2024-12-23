@@ -4,6 +4,9 @@
 #include <string>
 #include <fstream>
 #include <random>
+#include <cstdlib>
+#include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -13,8 +16,8 @@ bool playingAgain();
 char checkUserInputChar();
 string inputOfTheUsername();
 void readUsernameAndHighscore();
-void saveNewUsernameAndHighscore(string username);
-void checkIfUserHasNewHighscore(string username);
+void saveNewUsernameAndHighscore(const vector<pair<string, int>>& highscores);
+void checkIfUserHasNewHighscore(const string& username);
 bool isEmpty(ifstream& myFile);
 int creatingMenu();
 
@@ -228,15 +231,17 @@ void readUsernameAndHighscore() {
  * function to save the new username and highscore in the text file.
  * @param username username which should be saved
  */
-void saveNewUsernameAndHighscore(string username) {
+void saveNewUsernameAndHighscore(const vector<pair<string, int>>& highscores) {
     ofstream myFile ("..\\highscore.txt");
-    if(myFile.is_open()) {
-        myFile << username << "\n";
-        myFile << trys;
+
+    if(myFile.is_open()){
+        for(const auto& entry : highscores ) {
+            myFile << entry.first << "\n" << entry.second << "\n";
+        }
         myFile.close();
-        cout << "New Highscore got saved, you are at the top of the leaderboard now." << endl;
+        cout << "Highscores got updated successfully." << endl;
     } else {
-        cout << "Unable to open the highscore file." << endl;
+        cout << "Error: The file could not be open." << endl;
     }
 }
 
@@ -244,30 +249,54 @@ void saveNewUsernameAndHighscore(string username) {
  * function to check if the user got the new highscore
  * @param username if the user got the highscore the function calls a function where the new username is needed
  */
-void checkIfUserHasNewHighscore(string username) {
-    string bestUser[2];
-    ifstream myFile ("..\\highscore.txt");
-
-    if(isEmpty(myFile)){
-        cout << "Wow, you are the first one who is playing the game. There was no one before you who could be better!!" << endl;
-        saveNewUsernameAndHighscore(username);
-        return;
-    }
+void checkIfUserHasNewHighscore(const string& username) {
+    vector<pair<string, int>> highscores;
+    ifstream myFile("..\\highscore.txt");
 
     if(myFile.is_open()) {
-        if(!getline(myFile, bestUser[1])) {
-            cout << "Error: Could not read the highscore out of the file." << endl;
+        string line;
+        while (getline(myFile, line)) {
+            string user = line;
+            if(getline(myFile, line)) {
+                int score = atoi(line.c_str());
+                highscores.emplace_back(user, score);
+            }
+        }
+        myFile.close();
+    }
+
+    // sort every player if needed
+    sort(highscores.begin(), highscores.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+        return a.second < b.second;
+    });
+
+    // Player reached the highscore
+    if (highscores.empty() || trys < highscores.front().second) {
+        cout << "Congratulations you reached a new highscore" << endl;
+        highscores.insert(highscores.begin(), make_pair(username, trys));
+    } else {
+        // Add the player to the right position
+        bool added = false;
+        for (auto it = highscores.begin(); it != highscores.end(); ++it) {
+            if (trys < it->second) {
+                highscores.insert(it, make_pair(username, trys));
+                added = true;
+                break;
+            }
         }
 
-        if(trys >= atoi( bestUser[1].c_str())) {
-            cout << "Sorry you are not the best of the game." << endl;
-        } else if (trys < atoi(bestUser[1].c_str())) {
-            cout << "Congratulations, you got the new Highscore, it will be saved under your name" << endl;
-            saveNewUsernameAndHighscore(username);
+        // If the player is worse than the first three
+        if (!added && highscores.size() < 3) {
+            highscores.emplace_back(username, trys);
         }
-    } else {
-        cout << "Unable to open the highscore file." << endl;
     }
+
+    // save only the top three
+    if (highscores.size() > 3) {
+        highscores.resize(3);
+    }
+
+    saveNewUsernameAndHighscore(highscores);
 }
 
 /**
