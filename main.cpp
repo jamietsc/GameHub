@@ -61,11 +61,11 @@ bool checkNumber(int input, int x) {
         cout << "Please guess again: " << endl;
         return false;
     } else if(input > x){
-        cout << "The random number is smaller than your input" << endl;
+        cout << "The random number is smaller than your input." << endl;
         cout << "Please guess again: " << endl;
         return false;
     } else if(input == x){
-        cout << "Congratulations, you guessed the right number" << endl;
+        cout << "Congratulations, you guessed the right number." << endl;
         cout << "You needed " << trys << " trys to guess the right number." << endl;
         return true;
     } else {
@@ -204,7 +204,7 @@ void saveNewUsernameAndHighscore(string username) {
         myFile << username << "\n";
         myFile << trys;
         myFile.close();
-        cout << "New Highscore got saved, you are at the top of the leaderboard now" << endl;
+        cout << "New Highscore got saved, you are at the top of the leaderboard now." << endl;
     } else {
         cout << "Unable to open the highscore file." << endl;
     }
@@ -226,7 +226,7 @@ void checkIfUserHasNewHighscore(string username) {
         }
 
         if(trys >= atoi( bestUser[1].c_str())) {
-            cout << "Sorry you are not the best of the game" << endl;
+            cout << "Sorry you are not the best of the game." << endl;
         } else if (trys < atoi(bestUser[1].c_str())) {
             cout << "Congratulations, you got the new Highscore, it will be saved under your name" << endl;
             saveNewUsernameAndHighscore(username);
