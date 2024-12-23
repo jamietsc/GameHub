@@ -46,17 +46,14 @@ int main() {
                 x = dist(rng);
 
                 cout << "The number is set between 1 and 100, you can write your answer now." << endl;
-
                 while (!end) {
                     input = checkUserInputInteger();
                     if (input > 0) {
                         end = checkNumber(input, x);
                     }
                 }
-
                 checkIfUserHasNewHighscore(username);
                 end = playingAgain();
-                break;
             }
             case 2: {
                 readUsernameAndHighscore();
@@ -207,23 +204,9 @@ void readUsernameAndHighscore() {
                 cout << "Error while reading the file" << endl;
             }
         }
-        cout << "The first place was: " << bestUser[0] << " with " << bestUser[1] << "trys to guess the right number." << endl;
-        cout << "The second place was: " << bestUser[2] << " with " << bestUser[3] << "trys to guess the right number." << endl;
-        cout << "The third place was: " << bestUser[4] << " with " << bestUser[5] << "trys to guess the right number." << endl;
-        /**
-        if(!getline(myFile, bestUser[0])) {
-            cout << "Error: Could not read the username out of the file." << endl;
-            return;
-        }
-        if(!getline(myFile, bestUser[1])) {
-            cout << "Error: Could not read the highscore out of the file." << endl;
-            return;
-        }
-
-        cout << "The best user was " << bestUser[0]
-            << ". He needed only " << bestUser [1]
-            << " trys to guess the right number." << endl;
-        **/
+        cout << "The first place was: " << bestUser[0] << " with " << bestUser[1] << " trys to guess the right number." << endl;
+        cout << "The second place was: " << bestUser[2] << " with " << bestUser[3] << " trys to guess the right number." << endl;
+        cout << "The third place was: " << bestUser[4] << " with " << bestUser[5] << " trys to guess the right number." << endl;
         myFile.clear();
     } else {
         cout << "Unable to open the highscore file." << endl;
@@ -314,6 +297,7 @@ bool isEmpty(ifstream& myFile) {
 int creatingMenu(){
     int input; // the input of the user, respectively his decision
     cout << "Please choose what do you want to do:" << endl;
+    cout << "---------- 0. End the game ----------" << endl;
     cout << "---------- 1. Play the game ---------" << endl;
     cout << "------- 2. Show the highscore -------" << endl;
 
