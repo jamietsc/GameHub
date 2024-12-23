@@ -1,0 +1,8 @@
+//
+// Created by sauser on 23.12.2024.
+//
+
+#ifndef ZAHLENRATEN_SPIEL_BLACKJACK_H
+#define ZAHLENRATEN_SPIEL_BLACKJACK_H
+
+#endif //ZAHLENRATEN_SPIEL_BLACKJACK_H
