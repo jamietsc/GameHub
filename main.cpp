@@ -33,22 +33,33 @@ int main() {
     do {
         decision = creatingMenu();
 
-        mt19937 rng(random_device{}());
-        uniform_int_distribution<int> dist(1, 100);
-        x = dist(rng);
+        switch (decision) {
+            case 1: {
+                mt19937 rng(random_device{}());
+                uniform_int_distribution<int> dist(1, 100);
+                x = dist(rng);
 
-        cout << "The number is set between 1 and 100, you can write your answer now." << endl;
+                cout << "The number is set between 1 and 100, you can write your answer now." << endl;
 
-        while (!end) {
-            input = checkUserInputInteger();
-            if(input > 0){
-                end = checkNumber(input, x);
+                while (!end) {
+                    input = checkUserInputInteger();
+                    if (input > 0) {
+                        end = checkNumber(input, x);
+                    }
+                }
+
+                checkIfUserHasNewHighscore(username);
+                end = playingAgain();
+                break;
+            }
+            case 2: {
+                readUsernameAndHighscore();
+                break;
+            }
+            default: {
+                cout << "Your input was not accpted by the program, please try again." << endl;
             }
         }
-
-        checkIfUserHasNewHighscore(username);
-
-        end = playingAgain();
     } while (!end);
     return 0;
 }
