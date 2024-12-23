@@ -35,7 +35,7 @@ int main() {
             trys = checkNumber(input, x);
         }
 
-        readUsernameAndHighscore();
+        checkIfUserHasNewHighscore(username);
 
         if(end) {
             end = playingAgain();
@@ -194,10 +194,15 @@ void readUsernameAndHighscore() {
     }
 }
 
-bool saveNewUsernameAndHighscore(string username) {
+void saveNewUsernameAndHighscore(string username) {
     ofstream myFile ("..\\highscore.txt");
     if(myFile.is_open()) {
-        myFile <<
+        myFile << username << "\n";
+        myFile << trys;
+        myFile.close();
+        cout << "New Highscore got saved, you are at the top of the leaderboard now" << endl;
+    } else {
+        cout << "Unable to open the highscore file." << endl;
     }
 }
 
