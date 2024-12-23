@@ -36,6 +36,10 @@ int main() {
         decision = creatingMenu();
 
         switch (decision) {
+            case 0: {
+                cout << "Goodbye!" << endl;
+                return 1;
+            }
             case 1: {
                 mt19937 rng(random_device{}());
                 uniform_int_distribution<int> dist(1, 100);
