@@ -298,7 +298,7 @@ int creatingMenu(){
     int input; // the input of the user, respectively his decision
     cout << "Please choose what do you want to do:" << endl;
     cout << "---------- 0. End the game ----------" << endl;
-    cout << "---------- 1. Play the game ---------" << endl;
+    cout << "------ 1. Play Number guessing ------" << endl;
     cout << "------- 2. Show the highscore -------" << endl;
 
     return checkUserInputInteger();
