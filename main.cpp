@@ -34,9 +34,11 @@ int main() {
 
         cout << "The number is set between 1 and 100, you can write your answer now." << endl;
 
-        input = checkUserInputInteger();
-        if(input > 0){
-            end = checkNumber(input, x);
+        while (!end) {
+            input = checkUserInputInteger();
+            if(input > 0){
+                end = checkNumber(input, x);
+            }
         }
 
         checkIfUserHasNewHighscore(username);
