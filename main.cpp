@@ -13,7 +13,8 @@ bool playingAgain();
 char checkUserInputChar();
 string inputOfTheUsername();
 void readUsernameAndHighscore();
-bool saveNewUsernameAndHighscore(string username);
+void saveNewUsernameAndHighscore(string username);
+void checkIfUserHasNewHighscore(string username);
 bool isEmpty(ifstream& myFile);
 
 int trys = 0;
