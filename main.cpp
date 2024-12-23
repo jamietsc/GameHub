@@ -3,7 +3,7 @@
 #include <limits>
 #include <string>
 #include <fstream>
-#include <filesystem>
+#include <random>
 
 using namespace std;
 
@@ -28,7 +28,10 @@ int main() {
     username = inputOfTheUsername();
 
     do {
-        x = rand() % 100 + 1;
+        mt19937 rng(random_device{}());
+        uniform_int_distribution<int> dist(1, 100);
+        x = dist(rng);
+
         cout << "The number is set between 1 and 100, you can write your answer now." << endl;
 
         input = checkUserInputInteger();
