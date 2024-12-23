@@ -43,10 +43,8 @@ int main() {
 
         checkIfUserHasNewHighscore(username);
 
-        if(end) {
-            end = playingAgain();
-        }
-    } while (end == false);
+        end = playingAgain();
+    } while (!end);
     return 0;
 }
 
