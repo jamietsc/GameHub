@@ -13,10 +13,10 @@ bool playingAgain();
 char checkUserInputChar();
 string inputOfTheUsername();
 void readUsernameAndHighscore();
-bool saveNewUsernameAndHighscore();
+bool saveNewUsernameAndHighscore(string username);
 bool isEmpty(ifstream& myFile);
 
-
+int trys = 0;
 
 int main() {
     int x; //x is the random number between 1 and 100
@@ -32,7 +32,7 @@ int main() {
 
         input = checkUserInputInteger();
         if(input > 0){
-            end = checkNumber(input, x);
+            trys = checkNumber(input, x);
         }
 
         readUsernameAndHighscore();
@@ -51,8 +51,6 @@ int main() {
  * @return true if correct, false if not correct
  */
 bool checkNumber(int input, int x) {
-    int trys = 0;
-
     trys++;
     if(input < x){
         cout << "The random number is bigger than your input." << endl;
@@ -130,6 +128,7 @@ bool playingAgain() {
         decision = checkUserInputChar();
 
         if (decision == 'y') {
+            trys = 0;
             return false;
         } else if (decision == 'n') {
             return true;
@@ -195,8 +194,11 @@ void readUsernameAndHighscore() {
     }
 }
 
-bool saveNewUsernameAndHighscore() {
-
+bool saveNewUsernameAndHighscore(string username) {
+    ofstream myFile ("..\\highscore.txt");
+    if(myFile.is_open()) {
+        myFile <<
+    }
 }
 
 /**
