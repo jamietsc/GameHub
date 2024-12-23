@@ -16,6 +16,7 @@ void readUsernameAndHighscore();
 void saveNewUsernameAndHighscore(string username);
 void checkIfUserHasNewHighscore(string username);
 bool isEmpty(ifstream& myFile);
+int creatingMenu();
 
 int trys = 0;
 
@@ -30,6 +31,8 @@ int main() {
     username = inputOfTheUsername();
 
     do {
+        decision = creatingMenu();
+
         mt19937 rng(random_device{}());
         uniform_int_distribution<int> dist(1, 100);
         x = dist(rng);
@@ -253,4 +256,13 @@ void checkIfUserHasNewHighscore(string username) {
  */
 bool isEmpty(ifstream& myFile) {
     return myFile.peek() == ifstream::traits_type::eof();
+}
+
+int creatingMenu(){
+    int input; // the input of the user, respectively his decision
+    cout << "Please choose what do you want to do:" << endl;
+    cout << "---------- 1. Play the game ---------" << endl;
+    cout << "------- 2. Show the highscore -------" << endl;
+
+    return checkUserInputInteger();
 }
