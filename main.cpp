@@ -4,7 +4,6 @@
 #include <string>
 #include <fstream>
 #include <random>
-#include <cstdlib>
 #include <algorithm>
 #include <utility>
 
@@ -150,10 +149,10 @@ bool playingAgain() {
     while (true) {
         decision = checkUserInputChar();
 
-        if (decision == 'y') {
+        if (decision == 'y' || decision == 'Y') {
             trys = 0;
             return false;
-        } else if (decision == 'n') {
+        } else if (decision == 'n' || decision == 'N') {
             return true;
         } else {
             cout << "This letter was not accepted by the program. Please try again: " << endl;
@@ -175,9 +174,9 @@ string inputOfTheUsername(){
         cout << "Your inserted username is: " << username << ". Do you want to play with it (Yes = y; No = n)" << endl;
         while (true) {
             decision = checkUserInputChar();
-            if (decision == 'y') {
+            if (decision == 'y' || decision == 'Y') {
                 return username;
-            } else if (decision == 'n') {
+            } else if (decision == 'n' || decision == 'N') {
                 break;
             } else {
                 cout << "This letter was not accepted by the program. Please try again: " << endl;
@@ -190,7 +189,7 @@ string inputOfTheUsername(){
  * function to read the username and his highscore from the highscore.txt file
  */
 void readUsernameAndHighscore() {
-    string bestUser[5];
+    string bestUser[6];
     ifstream myFile ("..\\highscore.txt");
 
     if(isEmpty(myFile)){
