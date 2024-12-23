@@ -187,7 +187,7 @@ string inputOfTheUsername(){
  * function to read the username and his highscore from the highscore.txt file
  */
 void readUsernameAndHighscore() {
-    string bestUser[2];
+    string bestUser[5];
     ifstream myFile ("..\\highscore.txt");
 
     if(isEmpty(myFile)){
@@ -196,6 +196,15 @@ void readUsernameAndHighscore() {
     }
 
     if(myFile.is_open()) {
+        for(int i = 0; i < 6; i++){
+            if(!getline(myFile, bestUser[i])) {
+                cout << "Error while reading the file" << endl;
+            }
+        }
+        cout << "The first place was: " << bestUser[0] << " with " << bestUser[1] << "trys to guess the right number." << endl;
+        cout << "The second place was: " << bestUser[2] << " with " << bestUser[3] << "trys to guess the right number." << endl;
+        cout << "The third place was: " << bestUser[4] << " with " << bestUser[5] << "trys to guess the right number." << endl;
+        /**
         if(!getline(myFile, bestUser[0])) {
             cout << "Error: Could not read the username out of the file." << endl;
             return;
@@ -208,6 +217,7 @@ void readUsernameAndHighscore() {
         cout << "The best user was " << bestUser[0]
             << ". He needed only " << bestUser [1]
             << " trys to guess the right number." << endl;
+        **/
         myFile.clear();
     } else {
         cout << "Unable to open the highscore file." << endl;
