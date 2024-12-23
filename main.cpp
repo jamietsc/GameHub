@@ -206,6 +206,32 @@ void saveNewUsernameAndHighscore(string username) {
     }
 }
 
+void checkIfUserHasNewHighscore(string username) {
+    string bestUser[2];
+    ifstream myFile ("..\\highscore.txt");
+
+    if(isEmpty(myFile)){
+        cout << "Wow, you are the first one who is playing the game. There was no one before you who could be better!!" << endl;
+        saveNewUsernameAndHighscore(username);
+        return;
+    }
+
+    if(myFile.is_open()) {
+        if(!getline(myFile, bestUser[1])) {
+            cout << "Error: Could not read the highscore out of the file." << endl;
+        }
+
+        if(trys >= atoi( bestUser[1].c_str())) {
+            cout << "Sorry you are not the best of the game" << endl;
+        } else if (trys < atoi(bestUser[1].c_str())) {
+            cout << "Congratulations, you got the new Highscore, it will be saved under your name" << endl;
+            saveNewUsernameAndHighscore(username);
+        }
+    } else {
+        cout << "Unable to open the highscore file." << endl;
+    }
+}
+
 /**
  * Function to check if an excisting file is empty
  * @param myFile the path of the file
