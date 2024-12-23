@@ -198,6 +198,10 @@ void readUsernameAndHighscore() {
     }
 }
 
+/**
+ * function to save the new username and highscore in the text file.
+ * @param username username which should be saved
+ */
 void saveNewUsernameAndHighscore(string username) {
     ofstream myFile ("..\\highscore.txt");
     if(myFile.is_open()) {
@@ -210,6 +214,10 @@ void saveNewUsernameAndHighscore(string username) {
     }
 }
 
+/**
+ * function to check if the user got the new highscore
+ * @param username if the user got the highscore the function calls a function where the new username is needed
+ */
 void checkIfUserHasNewHighscore(string username) {
     string bestUser[2];
     ifstream myFile ("..\\highscore.txt");
