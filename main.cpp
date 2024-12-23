@@ -36,7 +36,7 @@ int main() {
 
         input = checkUserInputInteger();
         if(input > 0){
-            trys = checkNumber(input, x);
+            end = checkNumber(input, x);
         }
 
         checkIfUserHasNewHighscore(username);
