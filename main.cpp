@@ -20,10 +20,12 @@ bool isEmpty(ifstream& myFile);
 int trys = 0;
 
 int main() {
-    int x; //x is the random number between 1 and 100
     bool end = false;// variable to end the loop
-    int input; //input is for saving the guess of the user. trys for counting the trys the user needed.
+    int input, //input is for saving the guess of the user. trys for counting the trys the user needed
+        x, //x is the random number between 1 and 100
+        decision; //decision is for the menu of the game
     string username;
+
 
     username = inputOfTheUsername();
 
