@@ -16,6 +16,7 @@
 
 using namespace std;
 
+int checkUserInputInteger();
 bool mainFunctionNumberGuessing();
 
 #endif //ZAHLENRATEN_SPIEL_NUMBERGUESSING_H
