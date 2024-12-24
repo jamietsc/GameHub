@@ -2,7 +2,10 @@
 // Created by sauser on 24.12.2024.
 //
 
-#ifndef ZAHLENRATEN_SPIEL_USERINPUT_H
-#define ZAHLENRATEN_SPIEL_USERINPUT_H
+#ifndef GAMEHUB_USERINPUT_H
+#define GAMEHUB_USERINPUT_H
 
-#endif //ZAHLENRATEN_SPIEL_USERINPUT_H
+int checkUserInputInteger();
+char checkUserInputChar();
+
+#endif //GAMEHUB_USERINPUT_H
