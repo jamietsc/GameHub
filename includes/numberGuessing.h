@@ -26,5 +26,6 @@ void saveNewUsernameAndHighscore(const vector<pair<string, int>>& );
 void checkIfUserHasNewHighscore(const string&);
 bool isEmpty(ifstream& );
 int creatingMenu();
+int mainFunction();
 
 #endif //ZAHLENRATEN_SPIEL_NUMBERGUESSING_H
