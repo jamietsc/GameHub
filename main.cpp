@@ -50,6 +50,5 @@ int creatingMainMenu(){
     cout << "----------- 0. End GameHub ----------" << endl;
     cout << "------ 1. Play Number Guessing ------" << endl;
 
-
     return checkUserInputInteger();
 }
