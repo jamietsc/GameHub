@@ -25,8 +25,12 @@ int creatingMenu();
 
 int trys = 0;
 
-int mainFunction() {
-    bool end = false;// variable to end the loop
+/**
+ * the main function for the number guessing game
+ * @return 1 if the user wants to exit ||0 if the user wants to go back to the main menu
+ */
+bool mainFunctionNumberGuessing() {
+    bool endNumberGuessingGame = false;// variable to end the loop
     int input, //input is for saving the guess of the user. trys for counting the trys the user needed
     x, //x is the random number between 1 and 100
     decision; //decision is for the menu of the game
