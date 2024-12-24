@@ -62,6 +62,9 @@ int mainFunction() {
                 readUsernameAndHighscore();
                 break;
             }
+            case 3: {
+                return 0;
+            }
             default: {
                 cout << "Your input was not accpted by the program, please try again." << endl;
             }
@@ -303,6 +306,7 @@ int creatingMenu(){
     cout << "---------- 0. End the game ----------" << endl;
     cout << "---------- 1. Play the game ---------" << endl;
     cout << "------- 2. Show the highscore -------" << endl;
+    cout << "------- 3. Return to main menu ------" << endl;
 
     return checkUserInputInteger();
 }
