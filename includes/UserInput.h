@@ -1,0 +1,8 @@
+//
+// Created by sauser on 24.12.2024.
+//
+
+#ifndef ZAHLENRATEN_SPIEL_USERINPUT_H
+#define ZAHLENRATEN_SPIEL_USERINPUT_H
+
+#endif //ZAHLENRATEN_SPIEL_USERINPUT_H
