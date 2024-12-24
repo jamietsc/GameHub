@@ -16,16 +16,6 @@
 
 using namespace std;
 
-bool checkNumber(int, int );
-int checkUserInputInteger();
-bool playingAgain();
-char checkUserInputChar();
-string inputOfTheUsername();
-void readUsernameAndHighscore();
-void saveNewUsernameAndHighscore(const vector<pair<string, int>>& );
-void checkIfUserHasNewHighscore(const string&);
-bool isEmpty(ifstream& );
-int creatingMenu();
-int mainFunction();
+bool mainFunctionNumberGuessing();
 
 #endif //ZAHLENRATEN_SPIEL_NUMBERGUESSING_H
