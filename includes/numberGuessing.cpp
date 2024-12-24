@@ -23,7 +23,7 @@ void checkIfUserHasNewHighscore(const string& username);
 bool isEmpty(ifstream& myFile);
 int creatingMenu();
 
-int trys = 0;
+int trys;
 
 /**
  * the main function for the number guessing game
@@ -36,6 +36,7 @@ bool mainFunctionNumberGuessing() {
     decision; //decision is for the menu of the game
     string username;
 
+    trys = 0;
 
     username = inputOfTheUsername();
 
@@ -45,34 +46,37 @@ bool mainFunctionNumberGuessing() {
         switch (decision) {
             case 0: {
                 cout << "Goodbye!" << endl;
-                return EXIT_SUCCESS;
+                return true;
             }
             case 1: {
-                mt19937 rng(random_device{}());
-                uniform_int_distribution<int> dist(1, 100);
-                x = dist(rng);
+                while (!endNumberGuessingGame){
+                    mt19937 rng(random_device{}());
+                    uniform_int_distribution<int> dist(1, 100);
+                    x = dist(rng);
 
-                cout << "The number is set between 1 and 100, you can write your answer now." << endl;
-                while (!endNumberGuessingGame) {
-                    input = checkUserInputInteger();
-                    if (input > 0) {
-                        endNumberGuessingGame = checkNumber(input, x);
+                    cout << "The number is set between 1 and 100, you can write your answer now." << endl;
+                    while (!endNumberGuessingGame) {
+                        input = checkUserInputInteger();
+                        if (input > 0) {
+                            endNumberGuessingGame = checkNumber(input, x);
+                        }
                     }
+                    checkIfUserHasNewHighscore(username);
+                    endNumberGuessingGame = playingAgain();
                 }
-                checkIfUserHasNewHighscore(username);
-                endNumberGuessingGame = playingAgain();
             }
             case 2: {
                 readUsernameAndHighscore();
                 break;
             }
             case 3: {
-                return true;
+                return false;
             }
             default: {
                 cout << "Your input was not accpted by the program, please try again." << endl;
             }
         }
+        endNumberGuessingGame = false;
     } while (!endNumberGuessingGame);
     return 0;
 }
@@ -305,7 +309,6 @@ bool isEmpty(ifstream& myFile) {
 }
 
 int creatingMenu(){
-    int input; // the input of the user, respectively his decision
     cout << "Please choose what do you want to do:" << endl;
     cout << "---------- 0. End the game ----------" << endl;
     cout << "---------- 1. Play the game ---------" << endl;
