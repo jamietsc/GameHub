@@ -45,7 +45,7 @@ bool mainFunctionNumberGuessing() {
         switch (decision) {
             case 0: {
                 cout << "Goodbye!" << endl;
-                return 1;
+                return EXIT_SUCCESS;
             }
             case 1: {
                 mt19937 rng(random_device{}());
@@ -53,27 +53,27 @@ bool mainFunctionNumberGuessing() {
                 x = dist(rng);
 
                 cout << "The number is set between 1 and 100, you can write your answer now." << endl;
-                while (!end) {
+                while (!endNumberGuessingGame) {
                     input = checkUserInputInteger();
                     if (input > 0) {
-                        end = checkNumber(input, x);
+                        endNumberGuessingGame = checkNumber(input, x);
                     }
                 }
                 checkIfUserHasNewHighscore(username);
-                end = playingAgain();
+                endNumberGuessingGame = playingAgain();
             }
             case 2: {
                 readUsernameAndHighscore();
                 break;
             }
             case 3: {
-                return 0;
+                return true;
             }
             default: {
                 cout << "Your input was not accpted by the program, please try again." << endl;
             }
         }
-    } while (!end);
+    } while (!endNumberGuessingGame);
     return 0;
 }
 
