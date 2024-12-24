@@ -2,8 +2,8 @@
 // Created by sauser on 24.12.2024.
 //
 
-#ifndef ZAHLENRATEN_SPIEL_NUMBERGUESSING_H
-#define ZAHLENRATEN_SPIEL_NUMBERGUESSING_H
+#ifndef GAMEHUB_NUMBERGUESSING_H
+#define GAMEHUB_NUMBERGUESSING_H
 
 #include <iostream>
 #include <cstdlib>
@@ -16,7 +16,6 @@
 
 using namespace std;
 
-int checkUserInputInteger();
 bool mainFunctionNumberGuessing();
 
-#endif //ZAHLENRATEN_SPIEL_NUMBERGUESSING_H
+#endif //GAMEHUBL_NUMBERGUESSING_H

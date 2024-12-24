@@ -3,14 +3,13 @@
 #include <fstream>
 #include <random>
 #include <utility>
-#include "includes/numberGuessing.h"
+#include "games/NumberGuessing.h"
+#include "includes/UserInput.h"
 
 using namespace std;
 
 bool checkNumber(int input, int x);
-int checkUserInputInteger();
 bool playingAgain();
-char checkUserInputChar();
 string inputOfTheUsername();
 void readUsernameAndHighscore();
 void saveNewUsernameAndHighscore(const vector<pair<string, int>>& highscores);
