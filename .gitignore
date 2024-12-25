@@ -31,5 +31,17 @@
 *.out
 *.app
 
+# Build system files
+*.ninja
+.ninja_*
+build.ninja
+
+# Logs
+*.log
+
+# IDE-specific files
+*.txt
+
+
 #Directorys
 cmake-build-debug/
