@@ -35,6 +35,7 @@
 *.ninja
 .ninja_*
 build.ninja
+.yaml
 
 # Logs
 *.log
