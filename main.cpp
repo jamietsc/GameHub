@@ -3,8 +3,11 @@
 #include <fstream>
 #include <random>
 #include <utility>
-#include "games/NumberGuessing.h"
+
+
+#include "games/numberGuessing/NumberGuessing.h"
 #include "includes/UserInput.h"
+#include "games/Blackjack/Blackjack.h"
 
 using namespace std;
 
@@ -34,6 +37,7 @@ int main() {
                 end = mainFunctionNumberGuessing();
             }
             case 2: {
+                end = mainFunctionBlackjack();
                 break;
             }
             default: {
@@ -48,6 +52,7 @@ int creatingMainMenu(){
     cout << "Please choose what do you want to do:" << endl;
     cout << "----------- 0. End GameHub ----------" << endl;
     cout << "------ 1. Play Number Guessing ------" << endl;
+    cout << "--------- 2. Play Blackjack ---------" << endl;
 
     return checkUserInputInteger();
 }
