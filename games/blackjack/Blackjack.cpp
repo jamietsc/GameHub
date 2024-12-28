@@ -36,7 +36,11 @@ void addCardPlayer();
 
 Card* generateCard();
 
-void debugPrintDealerCard();
+void printDealerCards();
+
+void printPlayerCards();
+
+void printDealersFirstCard();
 
 bool mainFunctionBlackjack() {
    bool endBlackjack = false;
@@ -58,7 +62,7 @@ bool mainFunctionBlackjack() {
                break;
            }
            case 3: {
-               debugPrintDealerCard();
+               printDealerCards();
                break;
            }
        }
@@ -75,43 +79,105 @@ int creatingBlackjackMenu() {
 }
 
 void startNewBlackjackGame() {
+    bool blackjackGameEnds = false;
+
     cout << "Starting a new game..." << endl;
     dealerCards = nullptr;
     playerCards = nullptr;
 
-    Card *generatedCard;
+    addCardPlayer();
+    addCardDealer();
 
-    for(int i = 0; i <= 1; i++){
-        generatedCard = generateCard();
-        if(dealerCards == nullptr){
-            firstDealerCard = generatedCard;
-            dealerCards = generatedCard;
-            dealerCards->next_ = nullptr;
-            cout << "The first card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
-        } else {
-            dealerCards = firstDealerCard;
-            while (dealerCards != nullptr) {
-                if(dealerCards->next_ == nullptr) {
-                    dealerCards->next_ = generatedCard;
-                    cout << "The second card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
-                    break;
-                } else {
-                    dealerCards = dealerCards->next_;
-                }
-            }
-        }
-        cout << "The dealer pulled: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
+    printDealersFirstCard();
+
+    printPlayerCards();
+
+    while(!blackjackGameEnds){
+        cout << "What is your next play?" << endl;
+        cout << "-------- 1. Hit -------" << endl;
+        cout << "------- 2. Stand ------" << endl;
+        cout << "---- 3. Double Down ---" << endl;
+        cout << "------- 4. Split ------" << endl;
+        cout << "----- 5. Surrender ----" << endl;
+
+        blackjackGameEnds = true;
     }
+
+
 
 
 
 }
 
 void addCardDealer() {
-
+    Card* generatedCard;
+    if(dealerCards == nullptr){
+        for(int i = 0; i <= 1; i++){
+            generatedCard = generateCard();
+            if(dealerCards == nullptr){
+                firstDealerCard = generatedCard;
+                dealerCards = generatedCard;
+                dealerCards->next_ = nullptr;
+            } else {
+                dealerCards = firstDealerCard;
+                while (dealerCards != nullptr) {
+                    if(dealerCards->next_ == nullptr) {
+                        dealerCards->next_ = generatedCard;
+                        break;
+                    } else {
+                        dealerCards = dealerCards->next_;
+                    }
+                }
+            }
+        }
+    } else {
+        dealerCards = firstDealerCard;
+        while (dealerCards != nullptr) {
+            if(dealerCards->next_ == nullptr) {
+                dealerCards->next_ = generatedCard;
+                break;
+            } else {
+                dealerCards = dealerCards->next_;
+            }
+        }
+    }
 }
 
+
 void addCardPlayer() {
+    Card* generatedCard;
+    if(playerCards == nullptr){
+        for(int i = 0; i <= 1; i++){
+            generatedCard = generateCard();
+            if(playerCards == nullptr){
+                firstDealerCard = generatedCard;
+                playerCards = generatedCard;
+                playerCards->next_ = nullptr;
+            } else {
+                playerCards = firstDealerCard;
+                while (playerCards != nullptr) {
+                    if(playerCards->next_ == nullptr) {
+                        playerCards->next_ = generatedCard;
+                        break;
+                    } else {
+                        playerCards = playerCards->next_;
+                    }
+                }
+            }
+        }
+    } else {
+        generatedCard = generateCard();
+        playerCards = firstDealerCard;
+        while (playerCards != nullptr) {
+            if(playerCards->next_ == nullptr){
+                playerCards->next_ = generatedCard;
+                break;
+            } else {
+                playerCards = playerCards->next_;
+            }
+        }
+    }
+
 
 }
 
@@ -140,13 +206,29 @@ Card* generateCard(){
     return newCard;
 }
 
-void debugPrintDealerCard(){
+void printDealerCards(){
     dealerCards = firstDealerCard;
     while(dealerCards != nullptr){
         cout << "The dealer pulled: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
         dealerCards = dealerCards->next_;
     }
     delete(dealerCards);
+}
+
+void printPlayerCards() {
+    int i = 1;
+    playerCards = firstPlayerCard;
+    while(i < 3){
+        cout << "On your hand you have: " << endl;
+        cout << i << ". " << playerCards->fourColorName << " " << playerCards->nameOfTheCard << "." << endl;
+        playerCards = playerCards->next_;
+        i++;
+    }
+}
+
+void printDealersFirstCard(){
+    cout << "The dealer has the following card on his hand: " << endl;
+    cout << "1. " << firstDealerCard-> fourColorName << " " << firstDealerCard->nameOfTheCard << endl;
 }
 
 
