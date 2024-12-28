@@ -4,9 +4,9 @@ project(Zahlenraten_Spiel)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Zahlenraten_Spiel main.cpp
-        games/Blackjack.cpp
-        games/Blackjack.h
-        games/NumberGuessing.cpp
-        games/NumberGuessing.h
+        games/blackjack/Blackjack.cpp
+        games/blackjack/Blackjack.h
+        games/numberGuessing/NumberGuessing.cpp
+        games/numberGuessing/NumberGuessing.h
         includes/UserInput.cpp
         includes/UserInput.h)
