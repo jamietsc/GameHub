@@ -20,7 +20,7 @@ void readUsernameAndHighscore();
 void saveNewUsernameAndHighscore(const vector<pair<string, int>>& highscores);
 void checkIfUserHasNewHighscore(const string& username);
 bool isEmpty(ifstream& myFile);
-int creatingMenu();
+int creatingNumberGuessingMenu();
 
 int trys;
 
@@ -40,7 +40,7 @@ bool mainFunctionNumberGuessing() {
     username = inputOfTheUsername();
 
     do {
-        decision = creatingMenu();
+        decision = creatingNumberGuessingMenu();
 
         switch (decision) {
             case 0: {
@@ -262,7 +262,7 @@ bool isEmpty(ifstream& myFile) {
     return myFile.peek() == ifstream::traits_type::eof();
 }
 
-int creatingMenu(){
+int creatingNumberGuessingMenu(){
     cout << "Please choose what do you want to do:" << endl;
     cout << "---------- 0. End the game ----------" << endl;
     cout << "---------- 1. Play the game ---------" << endl;
