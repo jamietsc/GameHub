@@ -22,6 +22,9 @@ struct Card {
 Card* dealerCards = nullptr;
 Card* playerCards = nullptr;
 
+Card *firstDealerCard;
+Card *firstPlayerCard;
+
 //functions
 int creatingBlackjackMenu();
 
@@ -33,6 +36,7 @@ void addCardPlayer();
 
 Card* generateCard();
 
+void debugPrintDealerCard();
 
 bool mainFunctionBlackjack() {
    bool endBlackjack = false;
@@ -54,9 +58,8 @@ bool mainFunctionBlackjack() {
                break;
            }
            case 3: {
-               Card* playersCard = new Card();
-               playersCard = generateCard();
-               cout << "The card u pulled is a " << playersCard->fourColorName << playersCard->nameOfTheCard << ".";
+               debugPrintDealerCard();
+               break;
            }
        }
    } while (!endBlackjack);
@@ -75,6 +78,31 @@ void startNewBlackjackGame() {
     cout << "Starting a new game..." << endl;
     dealerCards = nullptr;
     playerCards = nullptr;
+
+    Card *generatedCard;
+
+    for(int i = 0; i <= 1; i++){
+        if(dealerCards == NULL){
+            generatedCard = generateCard();
+            firstDealerCard = generatedCard;
+            dealerCards = generatedCard;
+            dealerCards->next = NULL;
+            cout << "The first card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
+        } else {
+            cout << "The second card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
+            dealerCards = firstDealerCard;
+            while (dealerCards != NULL) {
+                if(dealerCards->next == NULL) {
+                    dealerCards->next = generatedCard;
+                    break;
+                } else {
+                    dealerCards = dealerCards->next;
+                }
+            }
+        }
+        cout << "The dealer pulled: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
+    }
+
 
 
 }
@@ -110,6 +138,15 @@ Card* generateCard(){
 
     newCard->fourColorName = theFourColors[arrayForFour(rng)];
     return newCard;
+}
+
+void debugPrintDealerCard(){
+    dealerCards = firstDealerCard;
+    while(dealerCards != NULL){
+        cout << "The dealer pulled: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
+        dealerCards = dealerCards->next;
+    }
+
 }
 
 
