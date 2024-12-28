@@ -15,7 +15,7 @@ struct Card {
     int cardValue;
     string fourColorName;
     string nameOfTheCard;
-    Card* next;
+    struct Card* next_;
 };
 
 // Globals for dealer and player cards
@@ -82,21 +82,21 @@ void startNewBlackjackGame() {
     Card *generatedCard;
 
     for(int i = 0; i <= 1; i++){
-        if(dealerCards == NULL){
-            generatedCard = generateCard();
+        generatedCard = generateCard();
+        if(dealerCards == nullptr){
             firstDealerCard = generatedCard;
             dealerCards = generatedCard;
-            dealerCards->next = NULL;
+            dealerCards->next_ = nullptr;
             cout << "The first card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
         } else {
-            cout << "The second card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
             dealerCards = firstDealerCard;
-            while (dealerCards != NULL) {
-                if(dealerCards->next == NULL) {
-                    dealerCards->next = generatedCard;
+            while (dealerCards != nullptr) {
+                if(dealerCards->next_ == nullptr) {
+                    dealerCards->next_ = generatedCard;
+                    cout << "The second card was pulled by the dealer: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
                     break;
                 } else {
-                    dealerCards = dealerCards->next;
+                    dealerCards = dealerCards->next_;
                 }
             }
         }
@@ -142,12 +142,13 @@ Card* generateCard(){
 
 void debugPrintDealerCard(){
     dealerCards = firstDealerCard;
-    while(dealerCards != NULL){
+    while(dealerCards != nullptr){
         cout << "The dealer pulled: " << dealerCards->fourColorName << " " << dealerCards->nameOfTheCard << "." << endl;
-        dealerCards = dealerCards->next;
+        dealerCards = dealerCards->next_;
     }
-
+    delete(dealerCards);
 }
+
 
 
 
