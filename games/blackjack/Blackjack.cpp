@@ -58,6 +58,8 @@ bool checkIfPlayerHasBlackjack();
 
 bool checkIfDealerHasBlackjack();
 
+int getDealerValue();
+
 bool mainFunctionBlackjack() {
    bool endBlackjack = false;
    int decision;
@@ -315,6 +317,17 @@ bool checkIfPlayerIsOver21() {
     } else {
         return true;
     }
+}
+
+int getDealerValue(){
+    int valueDealer = 0;
+
+    dealerCards = firstDealerCard;
+    while(dealerCards != nullptr){
+        valueDealer += dealerCards->cardValue;
+        dealerCards = dealerCards->next_;
+    }
+    return valueDealer;
 }
 
 
