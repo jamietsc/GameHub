@@ -42,6 +42,22 @@ void printPlayerCards();
 
 void printDealersFirstCard();
 
+void hit();
+
+void stand();
+
+void doubleDown();
+
+void split();
+
+void surrender();
+
+bool checkIfPlayerIsOver21();
+
+bool checkIfPlayerHasBlackjack();
+
+bool checkIfDealerHasBlackjack();
+
 bool mainFunctionBlackjack() {
    bool endBlackjack = false;
    int decision;
@@ -80,6 +96,7 @@ int creatingBlackjackMenu() {
 
 void startNewBlackjackGame() {
     bool blackjackGameEnds = false;
+    int decision;
 
     cout << "Starting a new game..." << endl;
     dealerCards = nullptr;
@@ -94,13 +111,43 @@ void startNewBlackjackGame() {
 
     while(!blackjackGameEnds){
         cout << "What is your next play?" << endl;
+        cout << "- 0. Read your cards. -"
         cout << "-------- 1. Hit -------" << endl;
         cout << "------- 2. Stand ------" << endl;
         cout << "---- 3. Double Down ---" << endl;
         cout << "------- 4. Split ------" << endl;
         cout << "----- 5. Surrender ----" << endl;
 
-        blackjackGameEnds = true;
+        decision = checkUserInputInteger();
+
+        switch (decision) {
+            case 0: {
+                printPlayerCards();
+                break;
+            }
+            case 1: {
+                addCardPlayer();
+                checkIfPlayerIsOver21();
+                break;
+            }
+            case 2: {
+                break;
+            }
+            case 3: {
+                break;
+            }
+            case 4: {
+                break;
+            }
+            case 5: {
+                surrender();
+                break;
+            }
+            default: {
+                cout << "Your input was not accepted by the system. Please try again." << endl;
+                break;
+            }
+        }
     }
 
 
@@ -117,6 +164,8 @@ void addCardDealer() {
             if(dealerCards == nullptr){
                 firstDealerCard = generatedCard;
                 dealerCards = generatedCard;
+                cout << "The first Card of the dealer is: " << dealerCards->fourColorName << " "
+                     << dealerCards->nameOfTheCard << "." << endl;
                 dealerCards->next_ = nullptr;
             } else {
                 dealerCards = firstDealerCard;
@@ -152,12 +201,14 @@ void addCardPlayer() {
             if(playerCards == nullptr){
                 firstDealerCard = generatedCard;
                 playerCards = generatedCard;
+                cout << "You pulled: " << playerCards->fourColorName << " " << playerCards->nameOfTheCard << "." << endl;
                 playerCards->next_ = nullptr;
             } else {
                 playerCards = firstDealerCard;
                 while (playerCards != nullptr) {
                     if(playerCards->next_ == nullptr) {
                         playerCards->next_ = generatedCard;
+                        cout << "You pulled: " << playerCards->next_->fourColorName << " " << playerCards->next_->nameOfTheCard << "." << endl;
                         break;
                     } else {
                         playerCards = playerCards->next_;
@@ -171,6 +222,7 @@ void addCardPlayer() {
         while (playerCards != nullptr) {
             if(playerCards->next_ == nullptr){
                 playerCards->next_ = generatedCard;
+                cout << "You pulled: " << playerCards->next_->fourColorName << " " << playerCards->next_->nameOfTheCard << "." << endl;
                 break;
             } else {
                 playerCards = playerCards->next_;
@@ -229,6 +281,40 @@ void printPlayerCards() {
 void printDealersFirstCard(){
     cout << "The dealer has the following card on his hand: " << endl;
     cout << "1. " << firstDealerCard-> fourColorName << " " << firstDealerCard->nameOfTheCard << endl;
+}
+
+void hit() {
+
+}
+
+void stand() {
+
+}
+
+void doubleDown() {
+
+}
+
+void split() {
+
+}
+
+void surrender() {
+
+}
+
+bool checkIfPlayerIsOver21() {
+    int value = 0;
+    playerCards = firstPlayerCard;
+    while(playerCards->next_ != nullptr){
+        value = value + playerCards->cardValue;
+    }
+
+    if(value <= 21){
+        return false;
+    } else {
+        return true;
+    }
 }
 
 
